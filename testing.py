@@ -10,8 +10,8 @@ PASSWORD = "Your Wi-Fi password"  #
 # Twilio credentials
 TWILIO_SID = "Your Twilio Account SID"  # 
 TWILIO_AUTH_TOKEN = "Your Twilio Auth Token"  # 
-FROM_PHONE = "+The phone number you are sending messages from (Twilio-provided)"  # 
-TO_PHONE = "+The phone number you want to send the message to"  # 
+FROM_PHONE = "The phone number you are sending messages from (Twilio-provided)"  # 
+TO_PHONE = "The phone number you want to send the message to"  # 
 
 # Initialize push button
 button = Pin(15, Pin.IN, Pin.PULL_UP)  # Set up a push button on GPIO pin 15 (with pull-up resistor)
