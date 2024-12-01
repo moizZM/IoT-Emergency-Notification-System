@@ -4,17 +4,18 @@ import urequests  # Import the urequests module to make HTTP requests
 from machine import Pin  # Import the Pin class from machine to handle GPIO pins (for the button)
 
 # Wi-Fi credentials
-SSID = "Your Wi-Fi network SSID (name)"  # 
-PASSWORD = "Your Wi-Fi password"  # 
+SSID = "Your Wi-Fi network SSID (name)"   
+PASSWORD = "Your Wi-Fi password"   
 
 # Twilio credentials
-TWILIO_SID = "Your Twilio Account SID"  # 
-TWILIO_AUTH_TOKEN = "Your Twilio Auth Token"  # 
-FROM_PHONE = "The phone number you are sending messages from (Twilio-provided)"  # 
-TO_PHONE = "The phone number you want to send the message to"  # 
+TWILIO_SID = "Your Twilio Account SID"  
+TWILIO_AUTH_TOKEN = "Your Twilio Auth Token"   
+FROM_PHONE = "The phone number you are sending messages from (Twilio-provided)"  
+TO_PHONE = "The phone number you want to send the message to"   
 
-# Initialize push button
+# Initialize push button & LED
 button = Pin(15, Pin.IN, Pin.PULL_UP)  # Set up a push button on GPIO pin 15 (with pull-up resistor)
+led = Pin("LED", Pin.OUT)
 
 # Function to connect to Wi-Fi
 def connect_to_wifi():
@@ -74,7 +75,9 @@ connect_to_wifi()  # Call the function to connect to the Wi-Fi network
 # Monitor button presses
 while True:
     if button.value() == 0:  # If the button is pressed (value is 0)
-        print("Button Pressed!")  # Print message indicating button press
+        print("Button Pressed!")  
+         led.value(1)
         send_sms("Button Pressed!")  # Send the SMS with the "Button Pressed!" message
         time.sleep(1)  # Sleep for 1 second to debounce the button (prevent multiple triggers)
+        led.value(0)
 
